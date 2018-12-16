@@ -10,14 +10,11 @@ angular.module('mediaApp.view1', ['ngRoute'])
     }])
 
     .controller('View1Ctrl', function ($scope, $sce, $timeout) {
-        var videoElement = document.querySelector('#selfview');
-
+        $scope.test = "test 1";
         navigator.mediaDevices.getUserMedia({video: true, audio: false}).then(function(stream){
-            console.log(stream);
-            console.log(videoElement);
-
             $timeout(function(){
-                videoElement.srcObject = stream;
+                $scope.stream = stream;
+                $scope.test = "test 2";
             }, 3000);
 
         }).catch(function(error) {
